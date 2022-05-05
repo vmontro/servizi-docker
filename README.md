@@ -1,11 +1,14 @@
-# GUIDA GENERALE DOCKER
+# GUIDA ALL'UTILIZZO DI MYSQL + PHPMYADMIN CON DOCKER
 
-Ogni servizio è suddiviso per branch. Tuttavia quasi tutti i servizi hanno come punto di riferimento la network dedicata. Per modificarla basta andare nel .env del branch di riferimento e il gioco è fatto.
-Di seguito il comando per creare la network che ho utilizzato.
+## N.B.
 
-## CREAZIONE NETWORK DEDICATA PER I SERVIZI
+Il servizio di MYSQL + PHPMyAdmin si trova nella network creata db_bridge. Si raccomanda di creare la network db_bridge.
+
+## Guida per alzare il servizio di **filerun**:
+
+- Scaricare il file **docker-compose.yml** e relativo **file di configurazione .env**
+- Digitare il seguente comando:
 
 ```
-docker network create -d bridge --subnet=172.21.0.0/16 --gateway=172.21.0.1 db_bridge
+docker-compose up -d
 ```
-
