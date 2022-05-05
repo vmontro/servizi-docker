@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  filerun:
+    image: filerun/filerun:${FR_VERSION}
+    container_name: ${FR_CONTAINER_NAME}
+    networks:
+      db_bridge:
+        ipv4_address: ${FR_IP}
+    ports:
+      - ${FR_PORT}:80
+    environment:
+      FR_DB_HOST: ${FR_DB_HOST}
+      FR_DB_NAME: ${DB_NAME}
+      FR_DB_USER: ${DB_USER}
+      FR_DB_PASS: ${DB_PWD}
+      FR_DB_PORT: 3306
+      APACHE_RUN_USER: www-data
+      APACHE_RUN_USER_ID: 33
+      APACHE_RUN_GROUP: www-data
+      APACHE_RUN_GROUP_ID: 33
+    volumes:
+      - ./config/html:/var/www/html
+      - ./FR-files:/user-files
+
+networks:
+  db_bridge:
+    external: true
+    name: db_bridge
